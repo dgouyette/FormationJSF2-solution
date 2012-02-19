@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:ez="http://java.sun.com/jsf/composite/status">
+
+
+
+<h:body>
+     <ez:Status/>
+
+    <ez:Helloworld/>
+
+
+    <ui:include src="header.xhtml"/>
+
+
+    <p>&#160;</p>
+
+    <div class="container">
+        <div class="row">
+            <div class="span4">
+                &#160;
+            </div>
+            <div class="span8">
+
+                <div class="modal">
+                    <ui:insert name="contenu"></ui:insert>
+                </div>
+            </div>
+            <div class="span4">
+                &#160;
+            </div>
+        </div>
+    </div>
+
+
+
+
+</h:body>
+</html>

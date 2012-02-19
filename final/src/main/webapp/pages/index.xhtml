@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core">
+
+
+<!--definit le modele utilise par ce document -->
+<ui:composition template="/pages/templates/layout.xhtml">`
+
+    <!-- definit la variable contenu utilise par le template layout -->
+    <ui:define name="contenu">
+            <p>&#160;</p>
+            <h1 class="center">Formation JSF 2</h1>
+
+            <div class="center"><img class="center" alt="Formation JSF 2"
+                      src="#{facesContext.externalContext.requestContextPath}/images/jsfLogoPetit.png"/>
+            </div>
+            <p>&#160;</p>
+            <h:form>
+                <div class="center">[ <h:outputText id="currentDate" value="${contactManagedBean.currentDate}"/>]</div>
+                <p:poll interval="1" update="currentDate"/>
+            </h:form>
+    </ui:define>
+
+
+</ui:composition>
+</html>

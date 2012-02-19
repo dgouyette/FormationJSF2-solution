@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+    <head>
+        <title>NOT RENDERED</title>
+    </head>
+
+    <body>
+
+        <composite:interface></composite:interface>
+        <composite:implementation>
+            <script type="text/javascript">
+                 var statusUpdate =function onStatusChange(data) {
+                      var status = data.status;
+                      if (Status === "begin"){
+                          document.getElementById('chargement').style.display = "inline";
+                      }
+                      if (Status === "success"){
+                          setTimeout("succee", 2);
+                           document.getElementById('chargement').style.display="none";
+                      }
+                 }
+
+                 jsf.ajax.addOnEvent(statusUpdate);
+            </script>
+            <div id="chargement" style="display:none;position:absolute;top:0px; right:15px;background-color:red;color:white;">Chargement...</div>
+        </composite:implementation>
+    </body></html>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
+        >
+<ui:composition template="/pages/templates/layout.xhtml">`
+
+    <ui:define name="titre">Home page</ui:define>
+    <ui:define name="contenu">
+
+        <h:form>
+            <f:loadBundle var="i18n" basename="com.societe.blog.Messages"/>
+
+
+            <ui:repeat value="#{articleManagedBean.articles}" var="article">
+                <article>
+                    <h2>
+                        <h:link outcome="show" includeViewParams="true" value="#{article.titre}">
+                            <f:param name="idArticle" value="#{article.id}"/>
+                        </h:link>
+                        <br/>
+                        <!--h:commandLink action="#{articleManagedBean.afficheArticle(article)}" value="#{article.titre}"/-->
+
+
+                    </h2>
+
+                    <p>Date : &#160;<h:outputText value="#{article.dateCreation}">
+                        <f:converter converterId="com.ocpsoft.PrettyTimeConverter"/>
+                    </h:outputText></p>
+
+                    <p>#{article.contenu}</p>
+                </article>
+                <hr/>
+
+            </ui:repeat>
+        </h:form>
+    </ui:define>
+
+
+</ui:composition>
+</html>

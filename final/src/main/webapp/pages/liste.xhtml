@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+
+
+<ui:composition template="/pages/templates/layout.xhtml">
+
+    <ui:define name="contenu">
+        <p>&#160;</p>
+
+        <h:form>
+            <h3>Liste des contacts</h3>
+            <table class="bordered-table zebra-striped">
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Email</th>
+                    <th>Date de naissance</th>
+                    <th>Actions</th>
+                </tr>
+                <ui:repeat value="#{contactManagedBean.contacts}" var="contact">
+                    <tr>
+                        <td>${contact.lastName}</td>
+                        <td>${contact.firstName}</td>
+                        <td><a href='mailto:${contact.email}'>${contact.email}</a></td>
+                        <td>${contact.birthDate}</td>
+                        <td><h:commandLink action="#{contactManagedBean.supprimer(contact)}" value="Supprimer"/></td>
+                    </tr>
+                </ui:repeat>
+            </table>
+
+
+            <div class="center">
+            <span class="alert-message error">
+                #{flash.ERROR}
+            </span>
+             <span class="alert-message success">
+                #{flash.SUCCESS}
+            </span>
+            </div>
+
+
+        </h:form>
+        <h:messages/>
+    </ui:define>
+</ui:composition>
+</html>
