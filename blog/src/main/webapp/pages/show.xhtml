@@ -41,7 +41,7 @@
         <hr/>
 
 
-        <ui:repeat value="#{articleManagedBean.currentArticle.commentaires}" var="commentaire">
+        <ui:repeat value="#{articleManagedBean.currentArticle.commentaires}" var="commentaire" id="comments">
             <article>
                 <h3>#{commentaire.auteur}</h3>
 
@@ -51,10 +51,7 @@
         </ui:repeat>
 
 
-        <h:form>
-
-            <h:messages styleClass="alert-message block-message error"/>
-
+        <h:form id="form">
 
             <fieldset>
                 <legend>Ajouter un commentaire</legend>
@@ -63,24 +60,27 @@
                 <h:outputLabel for="author" value="Auteur : "></h:outputLabel>
                 <h:inputText id="author" label="Auteur" value="#{articleManagedBean.currentCommentaire.auteur}">
                 </h:inputText>
+                <h:message for="author" styleClass="label label-important"/>
             </div>
 
             <div class="clearfix">
                 <h:outputLabel for="email" value="Email: "></h:outputLabel>
                 <h:inputText id="email" label="Email" value="#{articleManagedBean.currentCommentaire.email}">
                 </h:inputText>
+                <h:message for="email" styleClass="label label-important"/>
             </div>
 
             <div class="clearfix">
                 <h:outputLabel for="contenu" value="Contenu : "></h:outputLabel>
                 <h:inputTextarea id="contenu" label="Contenu" value="#{articleManagedBean.currentCommentaire.contenu}">
                 </h:inputTextarea>
+                <h:message for="contenu" styleClass="label label-important"/>
             </div>
 
             <div class="btn-group">
                 <h:commandButton action="#{articleManagedBean.ajouterCommentaire}" value="Ajouter"
-                                 styleClass="btn">
-                    <f:ajax execute="@form" render="@all"/>
+                                 styleClass="btn btn-primary">
+                    <f:ajax execute="@form" render="form comments"/>
                 </h:commandButton>
                 &#160;
                 <h:button  value="Annuler" styleClass="btn"/>
