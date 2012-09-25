@@ -1,35 +1,38 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://richfaces.org/sandbox/bootstrap">
+
 <h:head>
-    <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
 </h:head>
 <h:body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <a class="brand">Formation JSF2</a>
-                <h:form>
-                    <ul class="nav">
-                        <li class="active"><h:link outcome="index">Accueil</h:link></li>
-                    </ul>
-                </h:form>
-            </div>
-        </div>
-    </div>
-    <p>&#160;</p>
 
-    <p>&#160;</p>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand">Formation JSF2</a>
+				<h:form>
+					<ul class="nav">
+						<li class="active"><h:link outcome="index">Accueil</h:link></li>
+					</ul>
+				</h:form>
+			</div>
+		</div>
+	</div>
 
-    <div class="row">
-        <div class="span4">&#160;</div>
-        <div class="span6">
-            <h:link outcome="index">
-                <h:graphicImage library="images" name="jsfLogoPetit.png"/>
-            </h:link>
-        </div>
-    </div>
+	<p>&#160;</p>
+	<p>&#160;</p>
+	<b:gridRow styleClass="show-grid">
+		<b:gridColumn span="3">&#160;</b:gridColumn>
+		<b:gridColumn span="9">
+			<h:link outcome="index">
+				<h:graphicImage library="images" name="jsfLogoPetit.png" />
+			</h:link>
+		</b:gridColumn>
+	</b:gridRow>
 </h:body>
 </html>

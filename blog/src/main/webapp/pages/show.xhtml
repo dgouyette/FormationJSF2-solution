@@ -1,97 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ez="http://java.sun.com/jsf/composite/status">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ez="http://java.sun.com/jsf/composite/status"
+	xmlns:b="http://richfaces.org/sandbox/bootstrap">
 
 <h:head>
 
-    <f:metadata>
-        <f:viewParam name="idArticle" value="#{articleManagedBean.idArticle}">
-        </f:viewParam>
-        <f:event type="preRenderComponent" listener="#{articleManagedBean.initParamsView}"/>
-    </f:metadata>
+	<f:metadata>
+		<f:viewParam name="idArticle" value="#{articleManagedBean.idArticle}">
+		</f:viewParam>
+		<f:event type="preRenderComponent"
+			listener="#{articleManagedBean.initParamsView}" />
+	</f:metadata>
 </h:head>
 <ui:composition template="/pages/templates/layout.xhtml">`
-    <ez:Status/>
     <ui:define name="titre">#{articleManagedBean.currentArticle.titre}</ui:define>
-    <ui:define name="contenu">
+	<ui:define name="contenu">
 
-        <div class="row">
-            <span class="4"/>
-            <span class="12">
-                <ul class="breadcrumb">
-                    <li class="active"><h:link outcome="index">Accueil</h:link><span class="divider">&gt;</span></li>
-                    <li>#{articleManagedBean.currentArticle.titre}</li>
-                </ul>
-            </span>
-        </div>
-        <article>
-            <h2>#{articleManagedBean.currentArticle.titre}</h2>
+		<p>&#160;</p>
 
-            <p>Date : &#160;<h:outputText value="#{articleManagedBean.currentArticle.dateCreation}">
-                <f:converter converterId="com.ocpsoft.PrettyTimeConverter"/>
-            </h:outputText></p>
+		<ul class="breadcrumb">
+			<li class="active"><h:link outcome="index">Accueil</h:link><span
+				class="divider">&gt;</span></li>
+			<li>#{articleManagedBean.currentArticle.titre}</li>
+		</ul>
 
-            <p>#{articleManagedBean.currentArticle.contenu}</p>
+		<article>
+			<h2>#{articleManagedBean.currentArticle.titre}</h2>
 
+			<p>
+				Date : &#160;
+				<h:outputText
+					value="#{articleManagedBean.currentArticle.dateCreation}">
+					<f:converter converterId="com.ocpsoft.PrettyTimeConverter" />
+				</h:outputText>
+			</p>
 
-        </article>
-        <hr/>
-
-
-        <ui:repeat value="#{articleManagedBean.currentArticle.commentaires}" var="commentaire" id="comments">
-            <article>
-                <h3>#{commentaire.auteur}</h3>
-
-                <p>#{commentaire.contenu}</p>
-            </article>
-            <hr/>
-        </ui:repeat>
+			<p>#{articleManagedBean.currentArticle.contenu}</p>
 
 
-        <h:form id="form">
-
-            <fieldset>
-                <legend>Ajouter un commentaire</legend>
-            </fieldset>
-            <div class="clearfix">
-                <h:outputLabel for="author" value="Auteur : "></h:outputLabel>
-                <h:inputText id="author" label="Auteur" value="#{articleManagedBean.currentCommentaire.auteur}">
-                </h:inputText>
-                <h:message for="author" styleClass="label label-important"/>
-            </div>
-
-            <div class="clearfix">
-                <h:outputLabel for="email" value="Email: "></h:outputLabel>
-                <h:inputText id="email" label="Email" value="#{articleManagedBean.currentCommentaire.email}">
-                </h:inputText>
-                <h:message for="email" styleClass="label label-important"/>
-            </div>
-
-            <div class="clearfix">
-                <h:outputLabel for="contenu" value="Contenu : "></h:outputLabel>
-                <h:inputTextarea id="contenu" label="Contenu" value="#{articleManagedBean.currentCommentaire.contenu}">
-                </h:inputTextarea>
-                <h:message for="contenu" styleClass="label label-important"/>
-            </div>
-
-            <div class="btn-group">
-                <h:commandButton action="#{articleManagedBean.ajouterCommentaire}" value="Ajouter"
-                                 styleClass="btn btn-primary">
-                    <f:ajax execute="@form" render="form comments"/>
-                </h:commandButton>
-                &#160;
-                <h:button  value="Annuler" styleClass="btn"/>
-            </div>
+		</article>
+		<hr />
 
 
 
 
-        </h:form>
 
-    </ui:define>
+		<h:form id="form" styleClass="form-horizontal">
+
+			<ui:repeat value="#{articleManagedBean.currentArticle.commentaires}"
+				var="commentaire" id="comments">
+				<article>
+					<h3>#{commentaire.auteur}</h3>
+
+					<p>#{commentaire.contenu}</p>
+				</article>
+				<hr />
+			</ui:repeat>
+
+
+			<fieldset>
+				<legend>Ajouter un commentaire</legend>
+			</fieldset>
+
+
+			<div class="control-group">
+				<h:outputLabel for="author" value="Auteur : "
+					styleClass="control-label" />
+				<div class="controls">
+					<b:input placeholder="Auteur" label="Auteur"
+						value="#{articleManagedBean.currentCommentaire.auteur}" />
+
+				</div>
+			</div>
+
+
+			<div class="control-group">
+				<h:outputLabel for="email" value="Email : "
+					styleClass="control-label" />
+				<div class="controls">
+					<b:input placeholder="Votre email" label="Email"
+						value="#{articleManagedBean.currentCommentaire.email}" />
+
+				</div>
+			</div>
+
+
+
+			<div class="control-group">
+				<h:outputLabel for="contenu" value="Contenu : "
+					styleClass="control-label" />
+				<div class="controls">
+
+					<h:inputTextarea label="Contenu"
+						value="#{articleManagedBean.currentCommentaire.contenu}">
+					</h:inputTextarea>
+
+				</div>
+			</div>
+
+
+
+			<div class="control-group">
+				<div class="controls">
+					<h:commandButton action="#{articleManagedBean.ajouterCommentaire}"
+						value="Ajouter" styleClass="btn btn-primary">
+						<f:ajax execute="@form" render="form" />
+					</h:commandButton>
+					&#160;
+					<h:button value="Annuler" styleClass="btn" />
+					<p>&#160;</p>
+					<h:messages layout="table" styleClass="alert" />
+				</div>
+			</div>
+
+
+
+
+		</h:form>
+
+	</ui:define>
 
 
 </ui:composition>

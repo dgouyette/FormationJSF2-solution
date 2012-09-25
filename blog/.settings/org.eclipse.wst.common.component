@@ -5,6 +5,9 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="bootstrap-ui-4.3.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/bootstrap-ui/bootstrap-ui">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="blog"/>
         <property name="java-output-path" value="/blog/target/classes"/>
     </wb-module>
