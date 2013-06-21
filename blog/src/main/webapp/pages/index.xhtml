@@ -33,6 +33,18 @@
                 </article>
                 <hr/>
 
+				<ui:repeat value="#{article.commentaires}"
+				var="commentaire" id="comments">
+				<article>
+					<h3>#{commentaire.auteur}</h3>
+
+					<p>#{commentaire.contenu}</p>
+				</article>
+				<hr />
+			</ui:repeat>
+			
+
+
             </ui:repeat>
         </h:form>
     </ui:define>

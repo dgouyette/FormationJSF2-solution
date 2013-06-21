@@ -11,24 +11,16 @@
 </h:head>
 <h:body>
 
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container">
-				<a class="brand">Formation JSF2</a>
-				<h:form>
-					<ul class="nav">
-						<li class="active"><h:link outcome="index">Accueil</h:link></li>
-					</ul>
-				</h:form>
-			</div>
-		</div>
-	</div>
+
+	 <b:navbar brand="Formation JSF2" collapsible="true" fixed="true">
+        <h:link outcome="index" value="Accueil"/>
+    </b:navbar>
 
 	<p>&#160;</p>
 	<p>&#160;</p>
 	<b:gridRow styleClass="show-grid">
-		<b:gridColumn span="3">&#160;</b:gridColumn>
-		<b:gridColumn span="9">
+		<b:gridColumn span="2">&#160;</b:gridColumn>
+		<b:gridColumn span="10">
 			<h:link outcome="index">
 				<h:graphicImage library="images" name="jsfLogoPetit.png" />
 			</h:link>

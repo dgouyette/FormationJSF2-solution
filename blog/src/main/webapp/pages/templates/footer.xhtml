@@ -2,13 +2,15 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://richfaces.org/sandbox/bootstrap"
+      >
 <h:body>
-    <div class="row">
-        <div class="span6">&#160;</div>
-        <div class="span6">
-            <a href="http://www.cestpasdur.com/">Damien Gouyette</a> Copyright 2012
-        </div>
-    </div>
+    <b:gridRow styleClass="show-grid">
+		<b:gridColumn span="3">&#160;</b:gridColumn>
+		<b:gridColumn span="9">
+			<a href="http://www.cestpasdur.com/">Damien Gouyette</a> Copyright 2012
+		</b:gridColumn>
+	</b:gridRow>
 </h:body>
 </html>

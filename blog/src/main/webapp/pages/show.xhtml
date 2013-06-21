@@ -11,21 +11,25 @@
 	<f:metadata>
 		<f:viewParam name="idArticle" value="#{articleManagedBean.idArticle}">
 		</f:viewParam>
-		<f:event type="preRenderComponent"
+		<f:event type="preRenderView"
 			listener="#{articleManagedBean.initParamsView}" />
 	</f:metadata>
 </h:head>
 <ui:composition template="/pages/templates/layout.xhtml">`
+
+	
     <ui:define name="titre">#{articleManagedBean.currentArticle.titre}</ui:define>
 	<ui:define name="contenu">
+	
+	<ez:Status/>
+	<h:outputLabel value="#{bundle.LABEL_EMAIL}" />
 
 		<p>&#160;</p>
 
-		<ul class="breadcrumb">
-			<li class="active"><h:link outcome="index">Accueil</h:link><span
-				class="divider">&gt;</span></li>
-			<li>#{articleManagedBean.currentArticle.titre}</li>
-		</ul>
+		<b:breadcrumb>
+			<h:link outcome="index">Accueil</h:link>
+			<h:outputText value="#{articleManagedBean.currentArticle.titre}" id="titreArticle"/>
+		</b:breadcrumb>
 
 		<article>
 			<h2>#{articleManagedBean.currentArticle.titre}</h2>
@@ -45,10 +49,11 @@
 		<hr />
 
 
+			
 
 
 
-		<h:form id="form" styleClass="form-horizontal">
+		<h:form id="form1" styleClass="form-horizontal">
 
 			<ui:repeat value="#{articleManagedBean.currentArticle.commentaires}"
 				var="commentaire" id="comments">
@@ -59,6 +64,7 @@
 				</article>
 				<hr />
 			</ui:repeat>
+			
 
 
 			<fieldset>
@@ -70,7 +76,7 @@
 				<h:outputLabel for="author" value="Auteur : "
 					styleClass="control-label" />
 				<div class="controls">
-					<b:input placeholder="Auteur" label="Auteur"
+					<b:input id="author" placeholder="Auteur" label="Auteur" 
 						value="#{articleManagedBean.currentCommentaire.auteur}" />
 
 				</div>
@@ -81,8 +87,10 @@
 				<h:outputLabel for="email" value="Email : "
 					styleClass="control-label" />
 				<div class="controls">
+					
 					<b:input placeholder="Votre email" label="Email"
-						value="#{articleManagedBean.currentCommentaire.email}" />
+						value="#{articleManagedBean.currentCommentaire.email}" >
+						</b:input>
 
 				</div>
 			</div>
@@ -107,12 +115,12 @@
 				<div class="controls">
 					<h:commandButton action="#{articleManagedBean.ajouterCommentaire}"
 						value="Ajouter" styleClass="btn btn-primary">
-						<f:ajax execute="@form" render="form" />
+						<f:ajax execute="@form" render="@form" />
 					</h:commandButton>
 					&#160;
 					<h:button value="Annuler" styleClass="btn" />
 					<p>&#160;</p>
-					<h:messages layout="table" styleClass="alert" />
+                        <h:messages layout="table" styleClass="text-error" />
 				</div>
 			</div>
 

@@ -7,6 +7,8 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 
+import org.apache.commons.lang3.StringUtils;
+
 
 @FacesConverter("com.societe.converters.EmailConverter")
 public class EmailConverter implements Converter {
@@ -19,10 +21,9 @@ public class EmailConverter implements Converter {
     public String getAsString(FacesContext context, UIComponent component, Object value) throws ConverterException {
         String prefixe = "mailto:";
         String email = value.toString();
-        if (email.isEmpty()){
+        if (StringUtils.isEmpty(email)){
             return "";
         }
-
         if (!email.startsWith(prefixe)) {
             email = prefixe + email;
         }

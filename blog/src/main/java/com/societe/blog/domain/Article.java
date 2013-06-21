@@ -31,7 +31,7 @@ public class Article implements Serializable {
 
     private String contenu;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch= FetchType.EAGER)
     private List<Commentaire> commentaires;
 
 
