@@ -22,7 +22,6 @@
 	<ui:define name="contenu">
 	
 	<ez:Status/>
-	<h:outputLabel value="#{bundle.LABEL_EMAIL}" />
 
 		<p>&#160;</p>
 
@@ -73,7 +72,7 @@
 
 
 			<div class="control-group">
-				<h:outputLabel for="author" value="Auteur : "
+				<h:outputLabel for="author" value="#{bundle.LABEL_AUTEUR} : "
 					styleClass="control-label" />
 				<div class="controls">
 					<b:input id="author" placeholder="Auteur" label="Auteur" 
@@ -83,12 +82,16 @@
 			</div>
 
 
-			<div class="control-group">
-				<h:outputLabel for="email" value="Email : "
+
+
+            <div class="control-group">
+				<h:outputLabel for="email" value="#{bundle.LABEL_EMAIL} : "
 					styleClass="control-label" />
 				<div class="controls">
-					
-					<b:input placeholder="Votre email" label="Email"
+
+
+                    <!-- validator="com.societe.validators.EmailValidator"-->
+					<b:input id="email" placeholder="Votre email" label="Email"
 						value="#{articleManagedBean.currentCommentaire.email}" >
 						</b:input>
 

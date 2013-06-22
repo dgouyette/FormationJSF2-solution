@@ -1,5 +1,7 @@
 package com.societe.blog.validators;
 
+import org.apache.myfaces.shared.util.MessageUtils;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -13,8 +15,8 @@ import java.util.regex.Pattern;
 @FacesValidator("com.societe.validators.EmailValidator")
 public class EmailValidator implements Validator {
 
-    private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
+    private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
@@ -23,14 +25,16 @@ public class EmailValidator implements Validator {
         Pattern pattern = Pattern.compile(EMAIL_PATTERN);
         Matcher matcher = pattern.matcher(enteredEmail);
 
-        boolean matchFound = matcher.matches();
 
-        if (!matchFound) {
-            FacesMessage message = new FacesMessage();
-            message.setDetail("Email invalide");
-            message.setSummary("Email invalide");
-            message.setSeverity(FacesMessage.SEVERITY_ERROR);
-            throw new ValidatorException(message);
+        if (!matcher.matches()) {
+
+
+            MessageUtils.addMessage(FacesMessage.SEVERITY_ERROR, "mail invalide", null, component.getClientId());
+            //FacesMessage message = new FacesMessage();
+            //message.setDetail("INVALID_MAIL");
+            //message.setSeverity(FacesMessage.SEVERITY_ERROR);
+            //System.out.println("EMAIL  INVALIDE");
+            //throw new ValidatorException(message);
         }
     }
 }

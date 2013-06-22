@@ -12,7 +12,7 @@
 	</parent>
 
 	<properties>
-		<richfaces.version>4.3.0-SNAPSHOT</richfaces.version>
+		<richfaces.version>4.3.0.Final</richfaces.version>
 	</properties>
 
 	<dependencies>
@@ -39,8 +39,16 @@
 		<dependency>
 			<groupId>org.richfaces.sandbox.ui.bootstrap</groupId>
 			<artifactId>bootstrap-ui</artifactId>
-			<version>${richfaces.version}</version>
+			<version>0.1.0.Final</version>
 		</dependency>
+
+
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+
 
 
 		<!--dependency> <groupId>com.sun.faces</groupId> <artifactId>jsf-api</artifactId> 
@@ -181,6 +189,15 @@
 	<build>
 		<finalName>${project.artifactId}</finalName>
 		<plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>

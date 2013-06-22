@@ -9,7 +9,13 @@
         <resource-bundle>
         	<base-name>com.societe.blog.Messages</base-name>
         	<var>bundle</var>
+
+
         </resource-bundle>
+           <locale-config>
+               <default-locale>fr_FR</default-locale>
+               <supported-locale>en</supported-locale>
+           </locale-config>
     </application>
     
 
