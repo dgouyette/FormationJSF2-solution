@@ -1,138 +1,147 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ez="http://java.sun.com/jsf/composite/status"
-	xmlns:b="http://richfaces.org/sandbox/bootstrap">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ez="http://java.sun.com/jsf/composite/status"
+      xmlns:b="http://richfaces.org/sandbox/bootstrap">
 
 <h:head>
 
-	<f:metadata>
-		<f:viewParam name="idArticle" value="#{articleManagedBean.idArticle}">
-		</f:viewParam>
-		<f:event type="preRenderView"
-			listener="#{articleManagedBean.initParamsView}" />
-	</f:metadata>
+    <f:metadata>
+        <f:viewParam name="idArticle" value="#{articleManagedBean.idArticle}">
+        </f:viewParam>
+        <f:event type="preRenderView"
+                 listener="#{articleManagedBean.initParamsView}"/>
+    </f:metadata>
 </h:head>
-<ui:composition template="/pages/templates/layout.xhtml">`
 
-	
+<ui:composition template="/pages/templates/layout.xhtml">
+
+
+
     <ui:define name="titre">#{articleManagedBean.currentArticle.titre}</ui:define>
-	<ui:define name="contenu">
-	
-	<ez:Status/>
+    <ui:define name="contenu">
 
-		<p>&#160;</p>
+        <ez:Status/>
 
-		<b:breadcrumb>
-			<h:link outcome="index">Accueil</h:link>
-			<h:outputText value="#{articleManagedBean.currentArticle.titre}" id="titreArticle"/>
-		</b:breadcrumb>
+        <p>&#160;</p>
 
-		<article>
-			<h2>#{articleManagedBean.currentArticle.titre}</h2>
+        <b:breadcrumb>
+            <h:link outcome="index">Accueil</h:link>
+            <h:outputText value="#{articleManagedBean.currentArticle.titre}" id="titreArticle"/>
+        </b:breadcrumb>
 
-			<p>
-				Date : &#160;
-				<h:outputText
-					value="#{articleManagedBean.currentArticle.dateCreation}">
-					<f:converter converterId="com.ocpsoft.PrettyTimeConverter" />
-				</h:outputText>
-			</p>
+        <article>
+            <h2>#{articleManagedBean.currentArticle.titre}</h2>
 
-			<p>#{articleManagedBean.currentArticle.contenu}</p>
+            <p>
+                Date : &#160;
+                <h:outputText
+                        value="#{articleManagedBean.currentArticle.dateCreation}">
+                    <f:converter converterId="com.ocpsoft.PrettyTimeConverter"/>
+                </h:outputText>
+            </p>
 
-
-		</article>
-		<hr />
+            <p>#{articleManagedBean.currentArticle.contenu}</p>
 
 
-			
+        </article>
+        <hr/>
 
 
+        <h:form id="form1" styleClass="form-horizontal">
 
-		<h:form id="form1" styleClass="form-horizontal">
+            <ui:repeat value="#{articleManagedBean.currentArticle.commentaires}"
+                       var="commentaire" id="comments">
+                <article>
+                    <h3>#{commentaire.auteur}</h3>
 
-			<ui:repeat value="#{articleManagedBean.currentArticle.commentaires}"
-				var="commentaire" id="comments">
-				<article>
-					<h3>#{commentaire.auteur}</h3>
+                    <p>#{commentaire.contenu}</p>
+                </article>
+                <hr/>
 
-					<p>#{commentaire.contenu}</p>
-				</article>
-				<hr />
-			</ui:repeat>
-			
-
-
-			<fieldset>
-				<legend>Ajouter un commentaire</legend>
-			</fieldset>
+                <h:commandLink value="Delete" action="#{articleManagedBean.deleteCommentaire(commentaire)}">
+                    <f:ajax execute="@this" render="@form"/>
+                </h:commandLink>
+            </ui:repeat>
 
 
-			<div class="control-group">
-				<h:outputLabel for="author" value="#{bundle.LABEL_AUTEUR} : "
-					styleClass="control-label" />
-				<div class="controls">
-					<b:input id="author" placeholder="Auteur" label="Auteur" 
-						value="#{articleManagedBean.currentCommentaire.auteur}" />
+            <fieldset>
+                <legend>Ajouter un commentaire</legend>
+            </fieldset>
 
-				</div>
-			</div>
 
 
 
 
             <div class="control-group">
-				<h:outputLabel for="email" value="#{bundle.LABEL_EMAIL} : "
-					styleClass="control-label" />
-				<div class="controls">
+                <h:outputLabel for="author" value="#{bundle.LABEL_AUTEUR} : "
+                               styleClass="control-label"/>
+
+                <div class="controls">
+                    <b:input id="author" placeholder="Auteur" label="Auteur"
+                             value="#{articleManagedBean.currentCommentaire.auteur}"/>
+
+                </div>
+            </div>
 
 
-                    <!-- validator="com.societe.validators.EmailValidator"-->
-					<b:input id="email" placeholder="Votre email" label="Email"
-						value="#{articleManagedBean.currentCommentaire.email}" >
-						</b:input>
+            <div class="control-group">
+                <h:outputLabel for="email" value="#{bundle.LABEL_EMAIL} : "
+                               styleClass="control-label"/>
 
-				</div>
-			</div>
+                <div class="controls">
 
 
+                    <h:inputText id="email" placeholder="Votre email" label="Email"
 
-			<div class="control-group">
-				<h:outputLabel for="contenu" value="Contenu : "
-					styleClass="control-label" />
-				<div class="controls">
+                             value="#{articleManagedBean.currentCommentaire.email}">
 
-					<h:inputTextarea label="Contenu"
-						value="#{articleManagedBean.currentCommentaire.contenu}">
-					</h:inputTextarea>
-
-				</div>
-			</div>
+                        <f:ajax event="valueChange" render="@form"/>
+                    </h:inputText>
 
 
+                    <h:message for="email"  errorClass="alert"/>
 
-			<div class="control-group">
-				<div class="controls">
-					<h:commandButton action="#{articleManagedBean.ajouterCommentaire}"
-						value="Ajouter" styleClass="btn btn-primary">
-						<f:ajax execute="@form" render="@form" />
-					</h:commandButton>
-					&#160;
-					<h:button value="Annuler" styleClass="btn" />
-					<p>&#160;</p>
-                        <h:messages layout="table" styleClass="text-error" />
-				</div>
-			</div>
+                </div>
+            </div>
+
+
+            <div class="control-group">
+                <h:outputLabel for="contenu" value="#{bundle.LABEL_CONTENU}"
+                               styleClass="control-label"/>
+
+                <div class="controls">
+
+                    <h:inputTextarea label="Contenu"
+                                     value="#{articleManagedBean.currentCommentaire.contenu}">
+                    </h:inputTextarea>
 
 
 
+                </div>
+            </div>
 
-		</h:form>
 
-	</ui:define>
+            <div class="control-group">
+                <div class="controls">
+                    <h:commandButton action="#{articleManagedBean.ajouterCommentaire}"
+                                     value="Ajouter" styleClass="btn btn-primary">
+                        <f:ajax execute="@form" render="@form"/>
+                    </h:commandButton>
+                    &#160;
+                    <h:commandButton immediate="true" value="Annuler" styleClass="btn"/>
+
+                    <p>&#160;</p>
+                    <h:messages id="errorMessage" layout="list"  errorStyle="color: red"/>
+                </div>
+            </div>
+
+
+        </h:form>
+
+    </ui:define>
 
 
 </ui:composition>
